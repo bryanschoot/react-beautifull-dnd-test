@@ -9,6 +9,8 @@ export class GroceryList extends Component {
 
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
+        const destinationIndexValue = this.state.lists[source.droppableId].itemIds[destination.index];
+        const destinationItemValue = this.state.items[destinationIndexValue];
 
         if (!destination) {
             return
@@ -17,9 +19,6 @@ export class GroceryList extends Component {
         if (destination.droppableId === source.droppableId && destination.index === source.index) {
             return
         }
-        
-        const destinationIndexValue = this.state.lists[source.droppableId].itemIds[destination.index];
-        const destinationItemValue = this.state.items[destinationIndexValue];
 
         if (destinationItemValue.checked) {
             return
